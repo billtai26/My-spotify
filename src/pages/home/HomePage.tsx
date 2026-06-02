@@ -1,9 +1,8 @@
 import Topbar from '@/components/Topbar.tsx'
-import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="rounded-md overflow-hidden">
       <Topbar />
     </div>
   )

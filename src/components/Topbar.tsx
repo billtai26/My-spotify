@@ -1,16 +1,19 @@
 import { LayoutDashboardIcon } from "lucide-react"
-import { SignOutButton, useAuth } from "@clerk/react"
+import { SignOutButton, useAuth, UserButton } from "@clerk/react"
 import { Link } from "react-router-dom"
 import SignInOAuthButton from "./SignInOAuthButton"
+import { useAuthStore } from "@/stores/useAuthStore.ts"
 
 const Topbar = () => {
-  const isAdmin = false
+  const { isAdmin } = useAuthStore()
+  console.log({ isAdmin })
   const { isLoaded, isSignedIn } = useAuth()
 
   return (
     <div className="flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 backdrop-blur-md z-10">
       <div className="flex gap-2 items-center">
-        My Spotify
+        <img src="/spotify.png" className="size-8" alt="Spotify Logo" />
+        Spotify
       </div>
 
       <div className="flex items-center gap-4">
@@ -30,6 +33,8 @@ const Topbar = () => {
         )}
 
         {isLoaded && !isSignedIn && <SignInOAuthButton />}
+
+        <UserButton />
       </div>
     </div>
   )
