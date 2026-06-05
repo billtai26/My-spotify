@@ -1,8 +1,10 @@
-import { LayoutDashboardIcon } from "lucide-react"
-import { SignOutButton, useAuth, UserButton } from "@clerk/react"
-import { Link } from "react-router-dom"
-import SignInOAuthButton from "./SignInOAuthButton"
-import { useAuthStore } from "@/stores/useAuthStore.ts"
+import { LayoutDashboardIcon } from 'lucide-react'
+import { useAuth, UserButton } from '@clerk/react'
+import { Link } from 'react-router-dom'
+import SignInOAuthButton from './SignInOAuthButton'
+import { useAuthStore } from '@/stores/useAuthStore.ts'
+import { cn } from '@/lib/utils.ts'
+import { buttonVariants } from './ui/button.tsx'
 
 const Topbar = () => {
   const { isAdmin } = useAuthStore()
@@ -18,18 +20,13 @@ const Topbar = () => {
 
       <div className="flex items-center gap-4">
         {isAdmin && (
-          <Link to="/admin" className="flex items-center">
+          <Link
+            to="/admin"
+            className={cn(buttonVariants({ variant: 'outline' }))}
+          >
             <LayoutDashboardIcon className="size-4 mr-2" />
             Admin Dashboard
           </Link>
-        )}
-
-        {isLoaded && isSignedIn && (
-          <SignOutButton>
-            <button className="bg-white text-black px-4 py-2 rounded-md font-medium whitespace-nowrap">
-              Sign Out
-            </button>
-          </SignOutButton>
         )}
 
         {isLoaded && !isSignedIn && <SignInOAuthButton />}
