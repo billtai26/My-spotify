@@ -18,6 +18,7 @@ const SignInOAuthButton = () => {
       onClick={signInWithGoogle}
       className="bg-white text-black px-4 py-2 rounded-md font-medium whitespace-nowrap"
     >
+      <img src="/google.png" alt="Google" className="size-5" />
       Continue with Google
     </button>
   )
